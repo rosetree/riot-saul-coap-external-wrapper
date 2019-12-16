@@ -30,7 +30,7 @@ The header files of the `riot-saul-coap` module are:
 
 ``` c++
 #include "saul_coap.h"
-#inculde "saul_cord_ep.h"
+#include "saul_cord_ep.h"
 ```
 
 These define the following setup / init functions, that can be used to
