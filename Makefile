@@ -4,7 +4,7 @@ BOARD ?= native
 
 RIOTBASE ?= $(CURDIR)/RIOT
 
-USEMODULE += saul_coap
+USEMODULE += riot-saul-coap
 EXTERNAL_MODULE_DIRS += $(CURDIR)/riot-saul-coap
 
 USEMODULE += shell
