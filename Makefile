@@ -11,6 +11,13 @@ USEMODULE += shell
 USEMODULE += shell_commands
 USEMODULE += ps
 
+USEMODULE += xtimer
+USEMODULE += servo
+
+CFLAGS += -DSERVO_FREQUENCY=50
+
+USEMODULE += winch
+
 # Comment this out to disable code in RIOT that does safety checking
 # which is not needed in a production environment but helps in the
 # development process:

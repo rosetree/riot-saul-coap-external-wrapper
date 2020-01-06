@@ -3,9 +3,20 @@
 #include "shell.h"
 #include "saul_cord_ep.h"
 #include "saul_coap.h"
+#include "winch.h"
+#include "servo.h"
+#include "winch_coap.h"
 
 #define MAIN_QUEUE_SIZE (4)
 #define CORD_EP_ADDRESS "[fdaa:bb:cc:dd::1]:5683"
+
+#define WINCH_GPIO_PIN GPIO_PIN(0, 23)
+#define WINCH_DIAMETER_MM (15)
+
+#define DEV         PWM_DEV(0)
+#define CHANNEL     2
+#define SERVO_MIN	(500U)
+#define SERVO_MAX 	(5500U)
 
 static msg_t _main_msg_queue[MAIN_QUEUE_SIZE];
 
@@ -28,6 +39,18 @@ static void _on_ep_event(saul_cord_ep_event_t event)
 int main(void)
 {
     puts("Welcome to RIOT @ HAW!\n");
+
+    servo_t servo;
+    int err = servo_init(&servo, DEV, CHANNEL, SERVO_MIN, SERVO_MAX);
+    if (err < 0) {
+        puts("Errors while initializing servo");
+        return -1;
+    }
+
+    winch_t winch;
+    winch_init(&winch, &servo, WINCH_DIAMETER_MM, WINCH_GPIO_PIN);
+
+    winch_coap_init(&winch);
 
     saul_coap_init();
 
