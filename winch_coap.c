@@ -20,16 +20,16 @@ winch_t *pwinch;
 
 static ssize_t _winch_handler(coap_pkt_t* pdu, uint8_t *buf, size_t len, void *ctx)
 {
-    uint8_t l_ges;
+    int l_ges;
 
     (void)ctx;
    
    //change payload size  from 5 to 9- according to expected parameters etc.
-    if (pdu->payload_len <= 9) {
-        char req_payl[10] = { 0 };
+    if (pdu->payload_len <= 11) {
+        char req_payl[12] = { 0 };
         memcpy(req_payl, (char *)pdu->payload, pdu->payload_len);
-
         l_ges = atoi(req_payl);
+printf("Submitted value for winch is %d\n", l_ges);
     }
     else {
         return gcoap_response(pdu, buf, len, COAP_CODE_BAD_REQUEST);
@@ -43,7 +43,7 @@ static ssize_t _winch_handler(coap_pkt_t* pdu, uint8_t *buf, size_t len, void *c
 
 	//variable initiations?
             winch_control(pwinch, l_ges);
-            resp_len = gcoap_response(pdu, buf, len, COAP_CODE_404);
+            //resp_len = gcoap_response(pdu, buf, len, COAP_CODE_404);
 	    return resp_len;
     }
 
