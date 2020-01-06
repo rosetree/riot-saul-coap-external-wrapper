@@ -3,6 +3,7 @@
 #include "shell.h"
 #include "saul_cord_ep.h"
 #include "saul_coap.h"
+#include "heigh_calculate.h"
 
 #define MAIN_QUEUE_SIZE (4)
 #define CORD_EP_ADDRESS "[fdaa:bb:cc:dd::1]:5683"
