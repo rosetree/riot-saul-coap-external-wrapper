@@ -9,7 +9,7 @@ base and the the [riot-saul-coap][] code base in the root directory of
 this wrapper:
 
 ``` shellsession
-$ git clone https://github.com/RIOT-OS/RIOT.git
+$ git clone https://github.com/seojeongmoon/RIOT.git
 Cloning into 'RIOT'...
 ... more lines ...
 $ git clone https://github.com/rosetree/riot-saul-coap.git
@@ -45,6 +45,8 @@ saul_cord_ep_run();
 ```
 
 See [main.c](main.c) as an example usage file.
+
+[root]: https://github.com/seojeongmoon/RIOT
 
 [the external module test]: https://github.com/RIOT-OS/RIOT/tree/master/tests/external_module_dirs
 
